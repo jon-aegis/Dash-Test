@@ -10,7 +10,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 server = app.server
 
-url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.csv'
+url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway2.csv'
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
