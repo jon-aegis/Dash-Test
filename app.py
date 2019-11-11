@@ -29,7 +29,7 @@ app.layout = html.Div([
                     # markers={
                     #     'size': 15,
                     #     'marker': {'width': 0.5, 'color': 'blue'}
-                    },
+                    # },
                     name=i
                 ) for i in df.location.unique()
             ],
