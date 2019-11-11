@@ -56,7 +56,7 @@ data = [val for sublist in traces for val in sublist]
 figure = {'data': data,
           'layout': go.Layout(colorway=["#5E0DAC", '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056'],
                               height=600,
-                              title=f"Opening and Closing Prices for {', '.join(str(dropdown[i]) for i in selected_dropdown_value)} Over Time",
+                              title="Energy Data",
                               xaxis={"title": "Date",
                                      'rangeselector': {'buttons': list(
                                          [{'count': 1, 'label': '1M', 'step': 'month', 'stepmode': 'backward'},
