@@ -45,7 +45,7 @@ trace1 = go.Scatter(
     mode='lines', name='Total Energy kWh'  # Additional options
 )
 trace2 = go.Scatter(x=df['DT'], y=df['Cumulative BTUs'], mode='lines', name='Cumulative BTUs')
-trace3 = go.Scatter(x=df['x'], y=df['Cumulative Gas Use'], mode='lines', name='Cumulative Gas Use')
+trace3 = go.Scatter(x=df['DT'], y=df['Cumulative Gas Use'], mode='lines', name='Cumulative Gas Use')
 
 layout = go.Layout(title='Simple Plot from csv data',
                    plot_bgcolor='rgb(230, 230,230)')
