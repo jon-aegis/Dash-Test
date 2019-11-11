@@ -25,7 +25,7 @@ app.layout = html.Div([
             'data': [
                 go.Scatter(
                     x=df[df['location'] == i]['DT'],
-                    y=df[df['location'] == i]['Total Energy kWh'],
+                    y=df[df['location'] == i]['Real Power kW'],
                     text=df[df['location'] == i]['location'],
                     mode='lines',
                     opacity=0.7,
@@ -34,7 +34,7 @@ app.layout = html.Div([
             ],
             'layout': go.Layout(
                 xaxis={'title': 'Date'},
-                yaxis={'title': 'Total Energy kWh'},
+                yaxis={'title': 'Cogen Export kW'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
                 hovermode='closest'
