@@ -27,26 +27,30 @@ url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway2
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
 
-app.layout = html.Div([html.H1("Energy Data", style={'textAlign': 'center'}),
-    dcc.Dropdown(id='my-dropdown',options=[{'label': 'Total Energy kWh', 'value': df['Total Energy kWh']},{'label': 'Cumulative BTUs', 'value': df['Cumulative BTUs']},{'label': 'Cumulative Gas Use', 'value': df['Cumulative Gas Use']}],
-        multi=True,value=['Total Energy kWh'],style={"display": "block","margin-left": "auto","margin-right": "auto","width": "60%"}),
-    dcc.Graph(id='my-graph')
-], className="container")
+app.layout = html.Div([html.H1("Energy Data", style={'textAlign': 'center'})])
+#     dcc.Dropdown(id='my-dropdown',options=[{'label': 'Total Energy kWh', 'value': df['Total Energy kWh']},{'label': 'Cumulative BTUs', 'value': df['Cumulative BTUs']},{'label': 'Cumulative Gas Use', 'value': df['Cumulative Gas Use']}],
+#         multi=True,value=['Total Energy kWh'],style={"display": "block","margin-left": "auto","margin-right": "auto","width": "60%"}),
+#     dcc.Graph(id='my-graph')
+# ], className="container")
+#
+# @app.callback(Output('my-graph', 'figure'),
+#               [Input('my-dropdown', 'value')])
+# def update_graph(selected_dropdown_value):
+#     dropdown = {"Total Energy kWh": df['Total Energy kWh'], "Cumulative BTUs": df['Cumulative BTUs'], "Cumulative Gas Use": df['Cumulative Gas Use']}
+# trace1 = []
+# trace2 = []
+# trace3 = []
+trace1 = go.Scatter(
+    x=df['DT'], y=df['Total Energy kWh'],  # Data
+    mode='lines', name='Total Energy kWh'  # Additional options
+)
+trace2 = go.Scatter(x=df['DT'], y=df['Cumulative BTUs'], mode='lines', name='Cumulative BTUs')
+trace3 = go.Scatter(x=df['x'], y=df['Cumulative Gas Use'], mode='lines', name='Cumulative Gas Use')
 
-@app.callback(Output('my-graph', 'figure'),
-              [Input('my-dropdown', 'value')])
-def update_graph(selected_dropdown_value):
-    dropdown = {"Total Energy kWh": df['Total Energy kWh'], "Cumulative BTUs": df['Cumulative BTUs'], "Cumulative Gas Use": df['Cumulative Gas Use']}
-    trace1 = []
-    trace2 = []
-    trace3 = []
-    for stock in selected_dropdown_value:
-        trace1.append(go.Scatter(x=df[df["Total Energy kWh"] == stock]["DT"], y=df[df["Total Energy kWh"] == stock]["Total Energy kWh"], mode='lines',
-                                 opacity=0.7, name=f'Open {dropdown[stock]}', textposition='bottom center'))
-        trace2.append(go.Scatter(x=df[df["Cumulative BTUs"] == stock]["DT"], y=df[df["Cumulative BTUs"] == stock]["Cumulative BTUs"], mode='lines',
-                                 opacity=0.6, name=f'Close {dropdown[stock]}', textposition='bottom center'))
-        trace3.append(go.Scatter(x=df[df["Cumulative Gas Use"] == stock]["DT"], y=df[df["Cumulative Gas Use"] == stock]["Cumulative Gas Use"], mode='lines',
-                                 opacity=0.6, name=f'Close {dropdown[stock]}', textposition='bottom center'))
+layout = go.Layout(title='Simple Plot from csv data',
+                   plot_bgcolor='rgb(230, 230,230)')
+
+fig = go.Figure(data=[trace1, trace2, trace3], layout=layout)
     traces = [trace1, trace2, trace3]
     data = [val for sublist in traces for val in sublist]
     figure = {'data': data,
@@ -60,7 +64,7 @@ def update_graph(selected_dropdown_value):
                                               {'step': 'all'}])},
                                          'rangeslider': {'visible': True}, 'type': 'date'},
                                   yaxis={"title": "Price (USD)"})}
-    return figure
+# return figure
     # dcc.Graph(
     #     id='example-graph',
     #     figure={
