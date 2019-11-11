@@ -33,7 +33,7 @@ app.layout = html.Div([
                 ) for i in df.location.unique()
             ],
             'layout': go.Layout(
-                title=('Electric Consumption Data'),
+                title={'Electric Consumption Data'},
                 xaxis={'title': 'Date'},
                 yaxis={'title': 'Total Energy kWh'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
