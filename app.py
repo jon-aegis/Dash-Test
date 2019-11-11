@@ -14,6 +14,7 @@ url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
+df = df.loc[(df!=0).any(1)]
 
 app.layout = html.Div([
     dcc.Graph(
