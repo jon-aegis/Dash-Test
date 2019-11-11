@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import plotly.graph_objs as go
+import numpy as np
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -14,7 +15,8 @@ url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
-df = df.loc[(df!=0).any(1)]
+df = df.replace(0, np.nan)
+df = df.dropna(how='all', axis=0)
 
 app.layout = html.Div([
     dcc.Graph(
