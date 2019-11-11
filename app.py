@@ -14,9 +14,6 @@ server = app.server
 url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.csv'
 
 df = pd.read_csv(url)
-df = df.replace(0, np.nan)
-df = df.dropna(how='all', axis=0)
-df = df.replace(np.nan, 0)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
 
 app.layout = html.Div([
