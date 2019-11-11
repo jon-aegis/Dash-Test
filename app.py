@@ -10,7 +10,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
 server = app.server
 
-url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway2.csv'
+url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.csv'
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
@@ -34,7 +34,7 @@ app.layout = html.Div([
                 ) for i in df.location.unique()
             ],
             'layout': go.Layout(
-                xaxis={'type': 'log', 'title': 'Date'},
+                xaxis={'title': 'Date'},
                 yaxis={'title': 'Total Energy kWh'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
