@@ -64,7 +64,7 @@ figure = {'data': data,
                                           {'step': 'all'}])},
                                      'rangeslider': {'visible': True}, 'type': 'date'},
                               yaxis={"title": "Price (USD)"})}
-# return figure
+print(figure)
     # dcc.Graph(
     #     id='example-graph',
     #     figure={
