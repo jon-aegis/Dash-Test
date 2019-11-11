@@ -51,19 +51,19 @@ layout = go.Layout(title='Simple Plot from csv data',
                    plot_bgcolor='rgb(230, 230,230)')
 
 fig = go.Figure(data=[trace1, trace2, trace3], layout=layout)
-    traces = [trace1, trace2, trace3]
-    data = [val for sublist in traces for val in sublist]
-    figure = {'data': data,
-              'layout': go.Layout(colorway=["#5E0DAC", '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056'],
-                                  height=600,
-                                  title=f"Opening and Closing Prices for {', '.join(str(dropdown[i]) for i in selected_dropdown_value)} Over Time",
-                                  xaxis={"title": "Date",
-                                         'rangeselector': {'buttons': list(
-                                             [{'count': 1, 'label': '1M', 'step': 'month', 'stepmode': 'backward'},
-                                              {'count': 6, 'label': '6M', 'step': 'month', 'stepmode': 'backward'},
-                                              {'step': 'all'}])},
-                                         'rangeslider': {'visible': True}, 'type': 'date'},
-                                  yaxis={"title": "Price (USD)"})}
+traces = [trace1, trace2, trace3]
+data = [val for sublist in traces for val in sublist]
+figure = {'data': data,
+          'layout': go.Layout(colorway=["#5E0DAC", '#FF4F00', '#375CB1', '#FF7400', '#FFF400', '#FF0056'],
+                              height=600,
+                              title=f"Opening and Closing Prices for {', '.join(str(dropdown[i]) for i in selected_dropdown_value)} Over Time",
+                              xaxis={"title": "Date",
+                                     'rangeselector': {'buttons': list(
+                                         [{'count': 1, 'label': '1M', 'step': 'month', 'stepmode': 'backward'},
+                                          {'count': 6, 'label': '6M', 'step': 'month', 'stepmode': 'backward'},
+                                          {'step': 'all'}])},
+                                     'rangeslider': {'visible': True}, 'type': 'date'},
+                              yaxis={"title": "Price (USD)"})}
 # return figure
     # dcc.Graph(
     #     id='example-graph',
