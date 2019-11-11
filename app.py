@@ -24,9 +24,9 @@ app.layout = html.Div([
                     x=df[df['location'] == i]['DT'],
                     y=df[df['location'] == i]['Total Energy kWh'],
                     text=df[df['location'] == i]['location'],
-                    mode='lines',
+                    mode='markers',
                     opacity=0.7,
-                    lines={
+                    marker={
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'blue'}
                     },
