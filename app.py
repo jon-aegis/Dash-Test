@@ -14,6 +14,7 @@ url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
+df = df[(df != 0).all(1)]
 
 app.layout = html.Div([
     dcc.Graph(
@@ -24,9 +25,9 @@ app.layout = html.Div([
                     x=df[df['location'] == i]['DT'],
                     y=df[df['location'] == i]['Total Energy kWh'],
                     text=df[df['location'] == i]['location'],
-                    mode='markers',
+                    mode='lines',
                     opacity=0.7,
-                    marker={
+                    lines={
                         'size': 15,
                         'line': {'width': 0.5, 'color': 'blue'}
                     },
