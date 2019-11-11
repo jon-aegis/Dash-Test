@@ -22,9 +22,9 @@ app.layout = html.Div([
         figure={
             'data': [
                 go.Scatter(
-                    x=df[df['loaction'] == i]['DT'],
-                    y=df[df['loaction'] == i]['Total Energy kWh'],
-                    text=df[df['loaction'] == i]['location'],
+                    x=df[df['location'] == i]['DT'],
+                    y=df[df['location'] == i]['Total Energy kWh'],
+                    text=df[df['location'] == i]['location'],
                     mode='lines',
                     opacity=0.7,
                     marker={
