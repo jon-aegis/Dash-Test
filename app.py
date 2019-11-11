@@ -29,18 +29,15 @@ app.layout = html.Div([
                     text=df[df['location'] == i]['location'],
                     mode='lines',
                     opacity=0.7,
-                    # markers={
-                    #     'size': 15,
-                    #     'marker': {'width': 0.5, 'color': 'blue'}
-                    # },
                     name=i
                 ) for i in df.location.unique()
             ],
             'layout': go.Layout(
+                title=('Electric Consumption Data'),
                 xaxis={'title': 'Date'},
                 yaxis={'title': 'Total Energy kWh'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'x': 0, 'y': 1},
+                legend={'Total Energy kWh': 0},
                 hovermode='closest'
             )
         }
