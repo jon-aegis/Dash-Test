@@ -30,9 +30,9 @@ app.layout = html.Div([
                     text=df[df['location'] == i]['location'],
                     mode='lines',
                     opacity=0.7,
-                    lines={
+                    markers={
                         'size': 15,
-                        'line': {'width': 0.5, 'color': 'blue'}
+                        'marker': {'width': 0.5, 'color': 'blue'}
                     },
                     name=i
                 ) for i in df.location.unique()
