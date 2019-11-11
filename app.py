@@ -32,7 +32,7 @@ app.layout = html.Div([
                         'line': {'width': 0.5, 'color': 'white'}
                     },
                     name=i
-                ) for i in df.loaction.unique()
+                ) for i in df.location.unique()
             ],
             'layout': go.Layout(
                 xaxis={'type': 'log', 'title': 'Date'},
