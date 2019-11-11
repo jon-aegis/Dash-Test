@@ -26,7 +26,7 @@ df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
 
 app.layout = html.Div([html.H1("Energy Data", style={'textAlign': 'center'}),
-    dcc.Dropdown(id='my-dropdown',options=[{'label': 'Total Energy kWh', 'value': df['Total Energy kwh']},{'label': 'Cumulative BTUs', 'value': df['Cumulative BTUs']},{'label': 'Cumulative Gas Use', 'value': df['Cumulative Gas Use']}],
+    dcc.Dropdown(id='my-dropdown',options=[{'label': 'Total Energy kWh', 'value': df['Total Energy kWh']},{'label': 'Cumulative BTUs', 'value': df['Cumulative BTUs']},{'label': 'Cumulative Gas Use', 'value': df['Cumulative Gas Use']}],
         multi=True,value=['Total Energy kWh'],style={"display": "block","margin-left": "auto","margin-right": "auto","width": "60%"}),
     dcc.Graph(id='my-graph')
 ], className="container")
@@ -34,12 +34,12 @@ app.layout = html.Div([html.H1("Energy Data", style={'textAlign': 'center'}),
 @app.callback(Output('my-graph', 'figure'),
               [Input('my-dropdown', 'value')])
 def update_graph(selected_dropdown_value):
-    dropdown = {"Total Energy kWh": df['Total Energy kwh'], "Cumulative BTUs": df['Cumulative BTUs'], "Cumulative Gas Use": df['Cumulative Gas Use']}
+    dropdown = {"Total Energy kWh": df['Total Energy kWh'], "Cumulative BTUs": df['Cumulative BTUs'], "Cumulative Gas Use": df['Cumulative Gas Use']}
     trace1 = []
     trace2 = []
     trace3 = []
     for stock in selected_dropdown_value:
-        trace1.append(go.Scatter(x=df[df["Total Energy kwh"] == stock]["DT"], y=df[df["Total Energy kwh"] == stock]["Total Energy kwh"], mode='lines',
+        trace1.append(go.Scatter(x=df[df["Total Energy kWh"] == stock]["DT"], y=df[df["Total Energy kWh"] == stock]["Total Energy kWh"], mode='lines',
                                  opacity=0.7, name=f'Open {dropdown[stock]}', textposition='bottom center'))
         trace2.append(go.Scatter(x=df[df["Cumulative BTUs"] == stock]["DT"], y=df[df["Cumulative BTUs"] == stock]["Cumulative BTUs"], mode='lines',
                                  opacity=0.6, name=f'Close {dropdown[stock]}', textposition='bottom center'))
