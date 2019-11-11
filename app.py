@@ -37,7 +37,7 @@ app.layout = html.Div([
                 xaxis={'title': 'Date'},
                 yaxis={'title': 'Total Energy kWh'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'Total Energy kWh': 0},
+                legend={'x': 0, 'y': 1},
                 hovermode='closest'
             )
         }
