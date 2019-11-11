@@ -22,7 +22,7 @@ server = app.server
 #     ),
 #     html.Div(id='display-value'),
 
-url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway2.csv'
+url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.csv'
 
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
