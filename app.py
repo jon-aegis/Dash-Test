@@ -21,6 +21,7 @@ df = df.dropna(how='all', axis=0)
 app.layout = html.Div([
     dcc.Graph(
         id='Energy_Data',
+	config={"displaylogo": False},
         figure={
             'data': [
                 go.Scatter(
@@ -34,7 +35,7 @@ app.layout = html.Div([
             ],
             'layout': go.Layout(
                 xaxis={'title': 'Date'},
-                yaxis={'title': 'Cogen Export kW'},
+                yaxis={'title': 'Cogen Power kW'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
                 hovermode='closest'
