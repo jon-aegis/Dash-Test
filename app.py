@@ -33,61 +33,63 @@ app.layout = html.Div(children=[
     ''', style={'textAlign': 'center',
                 'color': colors['text']}),
     html.Div([
-        html.H3(children='Real Power kW', style={'textAlign': 'center',
-                'color': colors['text']}),
-        dcc.Graph(
-        id='Real Power',
-        figure={
-            'data': [
-                go.Scatter(
-                    x=df[df['location'] == i]['DT'],
-                    y=df[df['location'] == i]['Real Power kW'],
-                    text=df[df['location'] == i]['location'],
-                    mode='lines',
-                    opacity=0.7,
-                    name=i
-                ) for i in df.location.unique()
-            ],
-            'layout': go.Layout(
-                xaxis={'title': 'Date'},
-                yaxis={'title': 'Real Power kW'},
-                margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'x': 0, 'y': 1},
-                hovermode='closest',
-                font={'color': colors['text']},
-                plot_bgcolor= colors['background'],
-                paper_bgcolor= colors['background']
-            )
-        }
-    )]),
-    html.Div([
-        html.H3(children='Gas Use', style={'textAlign': 'center',
-                'color': colors['text']}),
-        dcc.Graph(
-        id='Gas Use',
-        figure={
-            'data': [
-                go.Scatter(
-                    x=df[df['location'] == i]['DT'],
-                    y=df[df['location'] == i]['Gas Use'],
-                    text=df[df['location'] == i]['location'],
-                    mode='lines',
-                    opacity=0.7,
-                    name=i
-                ) for i in df.location.unique()
-            ],
-            'layout': go.Layout(
-                xaxis={'title': 'Date'},
-                yaxis={'title': 'Gas Use'},
-                margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-                legend={'x': 0, 'y': 1},
-                hovermode='closest',
-                font={'color': colors['text']},
-                plot_bgcolor= colors['background'],
-                paper_bgcolor= colors['background']
-            )
-        }
-    )]),
+        html.Div([
+            html.H3(children='Real Power kW', style={'textAlign': 'center',
+                    'color': colors['text']}),
+            dcc.Graph(
+            id='Real Power',
+            figure={
+                'data': [
+                    go.Scatter(
+                        x=df[df['location'] == i]['DT'],
+                        y=df[df['location'] == i]['Real Power kW'],
+                        text=df[df['location'] == i]['location'],
+                        mode='lines',
+                        opacity=0.7,
+                        name=i
+                    ) for i in df.location.unique()
+                ],
+                'layout': go.Layout(
+                    xaxis={'title': 'Date'},
+                    yaxis={'title': 'Real Power kW'},
+                    margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                    legend={'x': 0, 'y': 1},
+                    hovermode='closest',
+                    font={'color': colors['text']},
+                    plot_bgcolor= colors['background'],
+                    paper_bgcolor= colors['background']
+                )
+            }
+        )], className="six columns"),
+        html.Div([
+            html.H3(children='Gas Use', style={'textAlign': 'center',
+                    'color': colors['text']}),
+            dcc.Graph(
+            id='Gas Use',
+            figure={
+                'data': [
+                    go.Scatter(
+                        x=df[df['location'] == i]['DT'],
+                        y=df[df['location'] == i]['Gas Use'],
+                        text=df[df['location'] == i]['location'],
+                        mode='lines',
+                        opacity=0.7,
+                        name=i
+                    ) for i in df.location.unique()
+                ],
+                'layout': go.Layout(
+                    xaxis={'title': 'Date'},
+                    yaxis={'title': 'Gas Use'},
+                    margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                    legend={'x': 0, 'y': 1},
+                    hovermode='closest',
+                    font={'color': colors['text']},
+                    plot_bgcolor= colors['background'],
+                    paper_bgcolor= colors['background']
+                )
+            }
+        )], className="six columns")
+    ]),
     html.Div([
         html.H3(children='BTU Output', style={'textAlign': 'center',
                 'color': colors['text']}),
