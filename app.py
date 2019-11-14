@@ -19,8 +19,8 @@ df = df.replace(0, np.nan)
 df = df.dropna(how='all', axis=0)
 
 colors = {
-    'background': '#000000',
-    'text': '#0CDDD7'
+    'background': '#FFFFFF',
+    'text': '#0B0B0B'
 }
 
 app.layout = html.Div(children=[
@@ -32,7 +32,10 @@ app.layout = html.Div(children=[
         Data: Real Power, Gas Use, and BTU Output
     ''', style={'textAlign': 'center',
                 'color': colors['text']}),
-    dcc.Graph(
+    html.Div([
+        html.H3(children='Real Power kW', style={'textAlign': 'center',
+                'color': colors['text']}),
+        dcc.Graph(
         id='Real Power',
         figure={
             'data': [
@@ -46,16 +49,21 @@ app.layout = html.Div(children=[
                 ) for i in df.location.unique()
             ],
             'layout': go.Layout(
-                title= '',
                 xaxis={'title': 'Date'},
                 yaxis={'title': 'Real Power kW'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
-                hovermode='closest'
+                hovermode='closest',
+                font={'color': colors['text']},
+                plot_bgcolor= colors['background'],
+                paper_bgcolor= colors['background']
             )
         }
-    ),
-    dcc.Graph(
+    )]),
+    html.Div([
+        html.H3(children='Gas Use', style={'textAlign': 'center',
+                'color': colors['text']}),
+        dcc.Graph(
         id='Gas Use',
         figure={
             'data': [
@@ -73,11 +81,17 @@ app.layout = html.Div(children=[
                 yaxis={'title': 'Gas Use'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
-                hovermode='closest'
+                hovermode='closest',
+                font={'color': colors['text']},
+                plot_bgcolor= colors['background'],
+                paper_bgcolor= colors['background']
             )
         }
-    ),
-    dcc.Graph(
+    )]),
+    html.Div([
+        html.H3(children='BTU Output', style={'textAlign': 'center',
+                'color': colors['text']}),
+        dcc.Graph(
         id='BTU Output',
         figure={
             'data': [
@@ -95,11 +109,14 @@ app.layout = html.Div(children=[
                 yaxis={'title': 'BTU Output'},
                 margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
-                hovermode='closest'
+                hovermode='closest',
+                font={'color': colors['text']},
+                plot_bgcolor= colors['background'],
+                paper_bgcolor= colors['background']
             )
         }
     )
-])
+])])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
