@@ -4,6 +4,8 @@ import dash_html_components as html
 import pandas as pd
 import plotly.graph_objs as go
 import numpy as np
+import plotly.figure_factory as ff
+from scipy.stats import zscore
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -17,10 +19,22 @@ df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
 df = df.replace(0, np.nan)
 df = df.dropna(how='all', axis=0)
+df = df.replace(np.nan, 0)
+df['Real_Power_N'] = zscore(df['Real Power kW'])
+df['Gas_Use_N'] = zscore(df['Gas Use'])
+
+x1 = df['Real_Power_N']
+x2 = df['Gas_Use_N']
+hist_data = [x1, x2]
+group_labels = ['Real Power kW Dist', 'Gas Use Dist']
+
+fig = ff.create_distplot(hist_data, group_labels)
 
 colors = {
     'background': '#0F0F10',
-    'text': '#57B8E3'
+    'background2': '#FFFFFF',
+    'text': '#57B8E3',
+    'text2': '#000000'
 }
 
 app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
@@ -118,7 +132,16 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
             )
         }
     )
-])])
+]),
+    html.H3([
+        html.Div(children='Gas Use and Real Power Distribution',
+                 style={'backgroundColor': colors['background2'],
+                'textAlign': 'center', 'color': colors['text2']}),
+        dcc.Graph(
+        id='Gas and Power Distribution',
+        figure=fig
+        )])
+])
 
 if __name__ == '__main__':
     app.run_server(debug=True)
