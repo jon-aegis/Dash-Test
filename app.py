@@ -19,11 +19,11 @@ df = df.replace(0, np.nan)
 df = df.dropna(how='all', axis=0)
 
 colors = {
-    'background': '#FFFFFF',
-    'text': '#0B0B0B'
+    'background': '#0F0F10',
+    'text': '#57B8E3'
 }
 
-app.layout = html.Div(children=[
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
     html.H1(children='Sample of Our Data', style={
             'textAlign': 'center',
             'color': colors['text']}),
@@ -80,7 +80,7 @@ app.layout = html.Div(children=[
                 'layout': go.Layout(
                     xaxis={'title': 'Date'},
                     yaxis={'title': 'Gas Use'},
-                    margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                    margin={'l': 50, 'b': 40, 't': 10, 'r': 10},
                     legend={'x': 0, 'y': 1},
                     hovermode='closest',
                     font={'color': colors['text']},
@@ -109,7 +109,7 @@ app.layout = html.Div(children=[
             'layout': go.Layout(
                 xaxis={'title': 'Date'},
                 yaxis={'title': 'BTU Output'},
-                margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+                margin={'l': 50, 'b': 40, 't': 10, 'r': 10},
                 legend={'x': 0, 'y': 1},
                 hovermode='closest',
                 font={'color': colors['text']},
