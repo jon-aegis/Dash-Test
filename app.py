@@ -15,6 +15,8 @@ server = app.server
 
 url = 'https://raw.githubusercontent.com/jon-aegis/meter-data/master/Fairingway.csv'
 
+mapbox_access_token = open("Mapbox_Token.csv").read()
+
 df = pd.read_csv(url)
 df['DT'] = pd.to_datetime(df.DT, infer_datetime_format=True)
 df = df.replace(0, np.nan)
@@ -22,6 +24,8 @@ df = df.dropna(how='all', axis=0)
 df = df.replace(np.nan, 0)
 df['Real_Power_N'] = zscore(df['Real Power kW'])
 df['Gas_Use_N'] = zscore(df['Gas Use'])
+
+df_site = pd.read_csv('Site_Lat_Lon.csv')
 
 x1 = df['Real_Power_N']
 x2 = df['Gas_Use_N']
@@ -133,6 +137,46 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         }
     )
 ]),
+    html.Div([
+        html.H3(children='Aegis Site Map',
+                 style={'backgroundColor': colors['background'],
+                        'textAlign': 'center', 'color': colors['text']}),
+        dcc.Graph(
+            id='Aegis Site Map',
+            style={
+                'height': 1000,
+                'width': 1850,
+                'Display': "block"
+                },
+            figure={
+                'data': [
+                    go.Scattermapbox(
+                        lat= df_site['Lat'],
+                        lon= df_site['Lon'],
+                        mode='markers',
+                        marker=dict(
+                            size=10,
+                        ),
+                        text=df_site['Site']
+                    )
+                ],
+                'layout': go.Layout(
+                    autosize=True,
+                    hovermode= 'closest',
+                    plot_bgcolor=colors['background'],
+                    paper_bgcolor=colors['background'],
+                    margin={'l': 50, 'b': 40, 't': 10, 'r': 10},
+                    mapbox=dict(
+                    accesstoken= mapbox_access_token,
+                    center=dict(
+                        lat=40.7128,
+                        lon=-74.0060
+                    ),
+                    zoom=10
+                )
+            )
+        })
+    ]),
     html.H3([
         html.Div(children='Gas Use and Real Power Distribution',
                  style={'backgroundColor': colors['background2'],
@@ -140,7 +184,7 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         dcc.Graph(
         id='Gas and Power Distribution',
         figure=fig
-        )])
+    )]),
 ])
 
 if __name__ == '__main__':
