@@ -7,7 +7,7 @@ import numpy as np
 import plotly.figure_factory as ff
 from scipy.stats import zscore
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+external_stylesheets = ['https://raw.githubusercontent.com/jon-aegis/style-sheets/master/aegis-default.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
