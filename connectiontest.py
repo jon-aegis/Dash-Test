@@ -5,7 +5,7 @@ try:
                                   password = "edcm6ngdzp8lm3b2",
                                   host = "db-postgresql-nyc1-73839-do-user-6782550-0.db.ondigitalocean.com",
                                   port = "25060",
-                                  database = "defaultdb",
+                                  database = "tutorial",
                                   sslmode = "require")
 
     cursor = connection.cursor()

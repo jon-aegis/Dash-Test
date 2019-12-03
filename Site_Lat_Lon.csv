@@ -1,6 +1,6 @@
-Site,Lat,Lon
-The Beresford,40.7826,-73.9719
-2 Tudor City Place,40.7488,-73.9716
-400 Central Park West,40.7792,-73.9691
-800 Sixth Aparments,40.7453,-73.9915
-Avalon Fort Greene,40.6939,-73.9827
+Site,Lat,Lon,Building_Type
+The Beresford,40.7826,-73.9719,Type1
+2 Tudor City Place,40.7488,-73.9716,Type2
+400 Central Park West,40.7792,-73.9691,Type3
+800 Sixth Aparments,40.7453,-73.9915,Type1
+Avalon Fort Greene,40.6939,-73.9827,Type2
